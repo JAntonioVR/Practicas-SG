@@ -1,8 +1,6 @@
 import { color } from '../libs/dat.gui.module.js';
 import * as THREE from '../libs/three.module.js'
 
-// TODO Cilindro, Esfera, Icosaedro, Toro
-
 //
 // ────────────────────────────────────────────────────────────────────── I ──────────
 //   :::::: C L A S E   G E O M E T R I A : :  :   :    :     :        :          :
@@ -95,8 +93,9 @@ class Cubo extends Geometria{
         this.geometry = new THREE.BoxGeometry(1.0, 1.0, 1.0);
         this.material = new THREE.MeshPhongMaterial({
             color: 0xBEFF33,
+            flatShading: true,
             specular: 0.4,
-            shininess: 0.1,
+            shininess: 0.9,
             reflectivity: 0.2,
         });
     }
@@ -117,8 +116,50 @@ class Cono extends Geometria{
     }
 }
 
+
+class Cilindro extends Geometria{
+    constructor(gui, titleGui){
+        super(gui, titleGui);
+        this.geometry = new THREE.CylinderGeometry(1.0, 1.0, 1.0, 20);
+        this.material = new THREE.MeshPhongMaterial({
+            color: 0xE80606
+        });
+    }
+}
+
+class Esfera extends Geometria{
+    constructor(gui, titleGui){
+        super(gui, titleGui);
+        this.geometry = new THREE.SphereGeometry(1.0, 20, 20);
+        this.material = new THREE.MeshPhongMaterial({
+            color: 0x12C968
+        });
+    }
+}
+
+class Icosaedro extends Geometria{
+    constructor(gui, titleGui){
+        super(gui, titleGui);
+        this.geometry = new THREE.IcosahedronGeometry(1.0);
+        this.material = new THREE.MeshPhongMaterial({
+            color: 0x04094E
+        });
+    }
+}
+
+class Toro extends Geometria{
+    constructor(gui, titleGui){
+        super(gui, titleGui);
+        this.geometry = new THREE.TorusGeometry(1.0, 0.5, 20, 20);
+        this.material = new THREE.MeshPhongMaterial({
+            color: 0xC98E0F
+        });
+    }
+}
+
+
 // ────────────────────────────────────────────────────────────────────────────────
 
 
 
-export { Cubo, Cono };
+export { Cubo, Cono, Cilindro, Esfera, Icosaedro, Toro };
