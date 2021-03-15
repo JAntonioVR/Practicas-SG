@@ -9,7 +9,6 @@ import { TrackballControls } from '../libs/TrackballControls.js'
 
 // TODO Importar los objetos creados
 import { Cubo, Cono, Cilindro, Esfera, Icosaedro, Toro } from './geometriaBasica3D.js'
-
  
 /// La clase fachada del modelo
 /**
@@ -55,23 +54,18 @@ class MyScene extends THREE.Scene {
     this.objetosEscena.add(objeto);
 
     objeto = new Cono(this.gui, "Controles del Cono");
-    objeto.setSpawnPosition(3.0, 0.5, 0.0);
     this.objetosEscena.add(objeto);
 
     objeto = new Cilindro(this.gui, "Controles del Cilindro");
-    objeto.setSpawnPosition(0.0, 0.5, 3.0);
     this.objetosEscena.add(objeto);
 
     objeto  = new Esfera(this.gui, "Controles de la Esfera");
-    objeto.setSpawnPosition(3.0, 1.0, 3.0);
     this.objetosEscena.add(objeto);
 
     objeto  = new Icosaedro(this.gui, "Controles del Icosaedro");
-    objeto.setSpawnPosition(-3.0, 1.0, 3.0);
     this.objetosEscena.add(objeto);
 
     objeto  = new Toro(this.gui, "Controles del Toro");
-    objeto.setSpawnPosition(-3.0, 1.5, 0.0);
     this.objetosEscena.add(objeto);
 
     this.add(this.objetosEscena);

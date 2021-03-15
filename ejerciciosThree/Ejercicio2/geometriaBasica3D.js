@@ -8,20 +8,20 @@ import * as THREE from '../libs/three.module.js'
 //
 
 class Geometria extends THREE.Mesh {
-    constructor(gui,titleGui) {
+    constructor(gui,titleGui, posicion) {
         super();
-        this.createGUI(gui,titleGui);
+        this.createGUI(gui,titleGui, posicion);
     }
   
     //
     // ─── INTERFAZ GRAFICA ───────────────────────────────────────────────────────────
     //
-    createGUI (gui,titleGui) {
+    createGUI (gui,titleGui, posicion) {
         // Controles para el movimiento de la parte móvil
         this.guiControls = new function () {
-            this.posX = 0.0;
-            this.posY = 0.5;
-            this.posZ = 0.0;
+            this.posX = posicion.x;
+            this.posY = posicion.y;
+            this.posZ = posicion.z;
 
             this.rotX = 0.0;
             this.rotY = 0.0;
@@ -30,8 +30,6 @@ class Geometria extends THREE.Mesh {
             this.tamX = 1.0;
             this.tamY = 1.0;
             this.tamZ = 1.0;
-
-            this.spawnPosition = new THREE.Vector3(this.posX, this.posY, this.posZ);
             
             // NOTE Aqui Andrés pone un botón para resetear la posicion y wireframe (modo alambre creo)
             // ...
@@ -56,17 +54,6 @@ class Geometria extends THREE.Mesh {
         // Reset?
     }
 
-    setSpawnPosition(x, y, z){
-        this.guiControls.posX = x;
-        this.guiControls.posY = y;
-        this.guiControls.posZ = z;
-
-        this.guiControls.spawnPosition.x = x;
-        this.guiControls.spawnPosition.y = y;
-        this.guiControls.spawnPosition.z = z;
-    }
-
-
     //
     // ─── METODO UPDATE ──────────────────────────────────────────────────────────────
     //        
@@ -89,7 +76,7 @@ class Geometria extends THREE.Mesh {
 
 class Cubo extends Geometria{
     constructor(gui, titleGui){
-        super(gui, titleGui);
+        super(gui, titleGui, new THREE.Vector3(0, 0.5, 0));
         this.geometry = new THREE.BoxGeometry(1.0, 1.0, 1.0);
         this.material = new THREE.MeshPhongMaterial({
             color: 0xBEFF33,
@@ -104,7 +91,7 @@ class Cubo extends Geometria{
 
 class Cono extends Geometria{
     constructor(gui, titleGui){
-        super(gui, titleGui);
+        super(gui, titleGui, new THREE.Vector3(0,0.5,3));
         this.geometry = new THREE.ConeGeometry(1.0, 1.0, 20);
         this.material = new THREE.MeshPhongMaterial({
             color: 0x33B2FF,
@@ -116,10 +103,9 @@ class Cono extends Geometria{
     }
 }
 
-
 class Cilindro extends Geometria{
     constructor(gui, titleGui){
-        super(gui, titleGui);
+        super(gui, titleGui, new THREE.Vector3(3,0.5,0));
         this.geometry = new THREE.CylinderGeometry(1.0, 1.0, 1.0, 20);
         this.material = new THREE.MeshPhongMaterial({
             color: 0xE80606
@@ -129,7 +115,7 @@ class Cilindro extends Geometria{
 
 class Esfera extends Geometria{
     constructor(gui, titleGui){
-        super(gui, titleGui);
+        super(gui, titleGui, new THREE.Vector3(3,1,3));
         this.geometry = new THREE.SphereGeometry(1.0, 20, 20);
         this.material = new THREE.MeshPhongMaterial({
             color: 0x12C968
@@ -139,7 +125,7 @@ class Esfera extends Geometria{
 
 class Icosaedro extends Geometria{
     constructor(gui, titleGui){
-        super(gui, titleGui);
+        super(gui, titleGui, new THREE.Vector3(6,1,0));
         this.geometry = new THREE.IcosahedronGeometry(1.0);
         this.material = new THREE.MeshPhongMaterial({
             color: 0x04094E
@@ -149,7 +135,7 @@ class Icosaedro extends Geometria{
 
 class Toro extends Geometria{
     constructor(gui, titleGui){
-        super(gui, titleGui);
+        super(gui, titleGui, new THREE.Vector3(0,1.5,6));
         this.geometry = new THREE.TorusGeometry(1.0, 0.5, 20, 20);
         this.material = new THREE.MeshPhongMaterial({
             color: 0xC98E0F
@@ -159,7 +145,5 @@ class Toro extends Geometria{
 
 
 // ────────────────────────────────────────────────────────────────────────────────
-
-
 
 export { Cubo, Cono, Cilindro, Esfera, Icosaedro, Toro };
