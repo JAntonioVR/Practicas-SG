@@ -78,13 +78,11 @@ class Cubo extends Geometria{
     constructor(gui, titleGui){
         super(gui, titleGui, new THREE.Vector3(0, 0.5, 0));
         this.geometry = new THREE.BoxGeometry(1.0, 1.0, 1.0);
-        this.material = new THREE.MeshPhongMaterial({
+        var miMaterial = new THREE.MeshPhongMaterial({
             color: 0xBEFF33,
-            flatShading: true,
-            specular: 0.4,
-            shininess: 0.9,
-            reflectivity: 0.2,
         });
+        miMaterial.needsUpdate = true;
+        this.material = miMaterial;
     }
 }
 
@@ -93,12 +91,9 @@ class Cono extends Geometria{
     constructor(gui, titleGui){
         super(gui, titleGui, new THREE.Vector3(0,0.5,3));
         this.geometry = new THREE.ConeGeometry(1.0, 1.0, 20);
-        this.material = new THREE.MeshPhongMaterial({
-            color: 0x33B2FF,
-            specular: 0.9,
-            shininess: 0.9,
-            reflectivity: 0.8,
-        });
+        var miMaterial = new THREE.MeshNormalMaterial();
+        miMaterial.needsUpdate = true;
+        this.material = miMaterial;
         
     }
 }
@@ -107,9 +102,13 @@ class Cilindro extends Geometria{
     constructor(gui, titleGui){
         super(gui, titleGui, new THREE.Vector3(3,0.5,0));
         this.geometry = new THREE.CylinderGeometry(1.0, 1.0, 1.0, 20);
-        this.material = new THREE.MeshPhongMaterial({
-            color: 0xE80606
+        var miMaterial = new THREE.MeshPhongMaterial({
+            color: 0xE80606,
+            shininess: 50,
         });
+        miMaterial.flatShading = true;
+        miMaterial.needsUpdate = true;
+        this.material = miMaterial;
     }
 }
 
@@ -117,9 +116,13 @@ class Esfera extends Geometria{
     constructor(gui, titleGui){
         super(gui, titleGui, new THREE.Vector3(3,1,3));
         this.geometry = new THREE.SphereGeometry(1.0, 20, 20);
-        this.material = new THREE.MeshPhongMaterial({
-            color: 0x12C968
+        var miMaterial = new THREE.MeshPhongMaterial({
+            color: 0x90c620,
+            shininess: 100,
+            emissive: 0x0,
         });
+        miMaterial.needsUpdate = true;
+        this.material = miMaterial;
     }
 }
 
@@ -127,9 +130,15 @@ class Icosaedro extends Geometria{
     constructor(gui, titleGui){
         super(gui, titleGui, new THREE.Vector3(6,1,0));
         this.geometry = new THREE.IcosahedronGeometry(1.0);
-        this.material = new THREE.MeshPhongMaterial({
-            color: 0x04094E
+        var miMaterial = new THREE.MeshPhongMaterial({
+            color: 0x04094E,
+            shininess: 50,
+            
+
         });
+        
+        miMaterial.needsUpdate = true;
+        this.material = miMaterial;
     }
 }
 
@@ -137,9 +146,10 @@ class Toro extends Geometria{
     constructor(gui, titleGui){
         super(gui, titleGui, new THREE.Vector3(0,1.5,6));
         this.geometry = new THREE.TorusGeometry(1.0, 0.5, 20, 20);
-        this.material = new THREE.MeshPhongMaterial({
-            color: 0xC98E0F
-        });
+        var miMaterial = new THREE.MeshNormalMaterial({});
+        //miMaterial.flatShading = true;
+        miMaterial.needsUpdate = true;
+        this.material = miMaterial;
     }
 }
 
