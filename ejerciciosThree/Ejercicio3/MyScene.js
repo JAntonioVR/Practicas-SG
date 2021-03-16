@@ -7,8 +7,7 @@ import { TrackballControls } from '../libs/TrackballControls.js'
 
 // Clases de mi proyecto
 
-
-import { Cubo, Cono, Cilindro, Esfera, Icosaedro, Toro } from './geometriaBasica3D.js'
+import { Jarron, Torre } from './geometriaRevol.js'
  
 /// La clase fachada del modelo
 /**
@@ -50,22 +49,11 @@ class MyScene extends THREE.Scene {
 
     this.objetosEscena = new THREE.Object3D();
 
-    var objeto = new Cubo(this.gui, "Controles del Cubo");
+    var objeto = new Jarron();
     this.objetosEscena.add(objeto);
 
-    objeto = new Cono(this.gui, "Controles del Cono");
-    this.objetosEscena.add(objeto);
-
-    objeto = new Cilindro(this.gui, "Controles del Cilindro");
-    this.objetosEscena.add(objeto);
-
-    objeto  = new Esfera(this.gui, "Controles de la Esfera");
-    this.objetosEscena.add(objeto);
-
-    objeto  = new Icosaedro(this.gui, "Controles del Icosaedro");
-    this.objetosEscena.add(objeto);
-
-    objeto  = new Toro(this.gui, "Controles del Toro");
+    objeto = new Torre(0, Math.PI*2);
+    objeto.position.set(8,0,2);
     this.objetosEscena.add(objeto);
 
     this.add(this.objetosEscena);
@@ -79,7 +67,7 @@ class MyScene extends THREE.Scene {
     //   Los planos de recorte cercano y lejano
     this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
     // También se indica dónde se coloca
-    this.camera.position.set (10, 10, 10);
+    this.camera.position.set (20, 20, 20);
     // Y hacia dónde mira
     var look = new THREE.Vector3 (0,0,0);
     this.camera.lookAt(look);
