@@ -7,7 +7,7 @@ import { TrackballControls } from '../libs/TrackballControls.js'
 
 // Clases de mi proyecto
 
-import { Jarron, Torre, Cazoleta } from './geometriaRevol.js'
+import { Corazon } from './geometriaExtrusion.js'
  
 /// La clase fachada del modelo
 /**
@@ -36,7 +36,7 @@ class MyScene extends THREE.Scene {
     this.createCamera ();
     
     // Un suelo 
-    this.createGround ();
+    //this.createGround ();
     
     // Y unos ejes. Imprescindibles para orientarnos sobre dónde están las cosas
     this.axis = new THREE.AxesHelper (5);
@@ -49,16 +49,7 @@ class MyScene extends THREE.Scene {
 
     this.objetosEscena = new THREE.Object3D();
 
-    var objeto = new Jarron();
-    objeto.position.set(8,0,0);
-    this.objetosEscena.add(objeto);
-    
-    objeto = new Torre(0, 3.0/2*Math.PI);
-    objeto.position.set(0,0,15)
-    
-    this.objetosEscena.add(objeto);
-
-    objeto = new Cazoleta();
+    var objeto = new Corazon();
     this.objetosEscena.add(objeto);
 
     this.add(this.objetosEscena);
@@ -72,7 +63,7 @@ class MyScene extends THREE.Scene {
     //   Los planos de recorte cercano y lejano
     this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
     // También se indica dónde se coloca
-    this.camera.position.set (20, 20, 20);
+    this.camera.position.set (100,100,100);
     // Y hacia dónde mira
     var look = new THREE.Vector3 (0,0,0);
     this.camera.lookAt(look);
@@ -93,7 +84,7 @@ class MyScene extends THREE.Scene {
     // El suelo es un Mesh, necesita una geometría y un material.
     
     // La geometría es una caja con muy poca altura
-    var geometryGround = new THREE.BoxGeometry (50,0.2,50);
+    var geometryGround = new THREE.BoxGeometry (200,0.2,200);
     
     // El material se hará con una textura de madera
     var texture = new THREE.TextureLoader().load('../imgs/wood.jpg');

@@ -76,8 +76,52 @@ class Torre extends GeometriaRevol{
     }
 }
 
+//
+// ─── CAZOLETA ───────────────────────────────────────────────────────────────────
+//
+class Cazoleta extends GeometriaRevol{
+    constructor(){
+        var points = [
+            new THREE.Vector3(4,0,0),
+            new THREE.Vector3(4,4,0),
+            new THREE.Vector3(3.9,4.1,0),
+            new THREE.Vector3(4,4.2,0),
+            new THREE.Vector3(4,5.2,0),
+            new THREE.Vector3(3.9,5.3,0),
+            new THREE.Vector3(4,5.4,0),
+            new THREE.Vector3(4,6.4,0),
+            new THREE.Vector3(3.9,6.5,0),
+            new THREE.Vector3(4,6.6,0),
+            new THREE.Vector3(4,7.6,0),
+            new THREE.Vector3(3.9,7.7,0),
+            new THREE.Vector3(4,7.8,0),
+            new THREE.Vector3(4,9,0),
+            new THREE.Vector3(6,10,0),
+            new THREE.Vector3(6.5,11,0),
+            new THREE.Vector3(6.7,12,0),
+            new THREE.Vector3(6.7,13,0),
+            new THREE.Vector3(6.7,13,0),
+            new THREE.Vector3(6.5,13.5,0),
+            new THREE.Vector3(6,13.5,0),
+            new THREE.Vector3(5.5,13,0),
+            new THREE.Vector3(5,12,0),
+            new THREE.Vector3(4.5,11,0),
+            new THREE.Vector3(3,10,0),
+            new THREE.Vector3(2,10,0),
+            new THREE.Vector3(1.8,11,0),
+            new THREE.Vector3(1.5,11,0),
+            new THREE.Vector3(1.5,0,0),
+            new THREE.Vector3(4,0,0)
+        ];
+        
+        super(points,50);
+        
+    }
+}
+    
+
 
 
 // ────────────────────────────────────────────────────────────────────────────────
 
-export { Jarron, Torre };
+export { Jarron, Torre, Cazoleta};
