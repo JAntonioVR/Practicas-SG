@@ -7,7 +7,7 @@ import { TrackballControls } from '../libs/TrackballControls.js'
 
 // Clases de mi proyecto
 
-import { Taza } from './CSG.js'
+import { Taza, Pieza, Tuerca} from './CSG.js'
  
 /// La clase fachada del modelo
 /**
@@ -51,6 +51,15 @@ class MyScene extends THREE.Scene {
 
     var objeto = new Taza();
     this.objetosEscena.add(objeto);
+
+    objeto = new Pieza();
+    objeto.position.set(7,0,0);
+    this.objetosEscena.add(objeto);
+
+    objeto = new Tuerca();
+    objeto.position.set(-7,0,0);
+    this.objetosEscena.add(objeto);
+
 
     this.add(this.objetosEscena);
 
