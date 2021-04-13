@@ -38,9 +38,27 @@ class Coche extends geometriaFichero{
     update(){}
 }
     
+class Pato extends geometriaFichero{
+    constructor(){
+        super('../models/pato/pato.mtl',
+              '../models/pato/pato.obj');
+        this.scale.set(0.01,0.01,0.01);
+        this.rotateX(-Math.PI/2)
+    }
+}
+
+class Arboles extends geometriaFichero{
+    
+    constructor(){
+        super('../models/arboles/trees9.mtl', 
+              '../models/arboles/trees9.obj');
+    }
+
+    update(){}
+}
 
     
 
 // ────────────────────────────────────────────────────────────────────────────────
 
-export { Coche };
+export { Coche, Pato, Arboles};

@@ -7,7 +7,7 @@ import { TrackballControls } from '../libs/TrackballControls.js'
 
 // Clases de mi proyecto
 
-import { Coche } from './geometriaFichero.js'
+import { Coche, Pato, Arboles } from './geometriaFichero.js'
  
 /// La clase fachada del modelo
 /**
@@ -36,7 +36,7 @@ class MyScene extends THREE.Scene {
     this.createCamera ();
     
     // Un suelo 
-    //this.createGround ();
+    this.createGround ();
     
     // Y unos ejes. Imprescindibles para orientarnos sobre dónde están las cosas
     this.axis = new THREE.AxesHelper (5);
@@ -50,7 +50,19 @@ class MyScene extends THREE.Scene {
     this.objetosEscena = new THREE.Object3D();
 
     var objeto = new Coche();
+    objeto.rotateY(Math.PI);
+    objeto.position.set(0,0.5,0)
     this.objetosEscena.add(objeto);
+
+    objeto = new Pato();
+    objeto.position.set(4,0,4);
+    this.objetosEscena.add(objeto);
+
+    objeto = new Arboles();
+    objeto.position.set(-4,0,-4);
+    this.objetosEscena.add(objeto);
+
+
 
     this.add(this.objetosEscena);
 
