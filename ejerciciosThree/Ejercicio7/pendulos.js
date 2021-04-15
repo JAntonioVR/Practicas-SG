@@ -2,9 +2,16 @@ import { color } from '../libs/dat.gui.module.js';
 import * as THREE from '../libs/three.module.js'
 
 class Pendulo extends THREE.Mesh {
-    constructor(gui,titleGui, posicion) {
+    constructor(gui,titleGui) {
         super();
-        this.createGUI(gui,titleGui, posicion);
+        this.createGUI(gui,titleGui);
+
+        this.pendInf = new PenduloInferior(gui, "Pendulo Inferior");
+        this.pendSup = new PenduloSuperior(gui);
+        this.pendInf.position.set(0,-2-0.1*5,2.5);
+        
+        this.add(this.pendInf);
+        this.add(this.pendSup);
     }
   
     //
@@ -15,21 +22,12 @@ class Pendulo extends THREE.Mesh {
         this.guiControls = new function () {
             
             this.alpha = 0;
-            this.beta = 5;
             this.gamma = 0.1;
-            this.delta = 0;
-            this.lambda = 10;
         } 
-        
-        // Se crea una sección para los controles de la caja
+
         var folder = gui.addFolder (titleGui);
-        // Estas lineas son las que añaden los componentes de la interfaz
-        // Las tres cifras indican un valor mínimo, un máximo y el incremento
-        folder.add (this.guiControls, 'alpha', -Math.PI/4, Math.PI/4, 0.01).name ('Giro Pendulo Superior :\t').listen();
-        folder.add (this.guiControls, 'beta', 5, 10, 0.1).name ('Tamaño parte roja :\t').listen();
+        folder.add (this.guiControls, 'alpha', -Math.PI/4, Math.PI/4, 0.01).name ('Giro:\t').listen();
         folder.add (this.guiControls, 'gamma', 0.1, 0.9, 0.1).name ('Posicion Pendulo inferior :\t').listen();
-        folder.add (this.guiControls, 'delta', -Math.PI/4, Math.PI/4, 0.1).name ('Giro Pendulo Inferior :\t').listen();
-        folder.add (this.guiControls, 'lambda', 10,20, 0.1).name ('Tamaño Pendulo Inferior :\t').listen();
         
         // Reset?
     }
@@ -38,15 +36,10 @@ class Pendulo extends THREE.Mesh {
     // ─── METODO UPDATE ──────────────────────────────────────────────────────────────
     //        
     update () {
-        /*this.position.set(
-            this.guiControls.posX, this.guiControls.posY, this.guiControls.posZ
-        );
-        this.rotation.set(
-            this.guiControls.rotX, this.guiControls.rotY, this.guiControls.rotZ
-        );
-        this.scale.set(
-            this.guiControls.tamX, this.guiControls.tamY, this.guiControls.tamZ
-        );*/
+        this.rotation.set(0,0,this.guiControls.alpha);
+        this.pendInf.position.set(0,-2-this.pendSup.parteCentral.guiControls.beta*this.guiControls.gamma,2.5);
+        this.pendSup.update();
+        this.pendInf.update();
     }
 }
 
@@ -213,4 +206,4 @@ class PenduloInferior extends THREE.Object3D{
 // ────────────────────────────────────────────────────────────────────────────────
 
 export { EjePenduloSuperior, ParteAbajoPS, ParteRoja, PenduloSuperior, PenduloInferiorCaja,
-         PenduloInferior };
+         PenduloInferior, Pendulo };

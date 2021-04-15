@@ -8,7 +8,7 @@ import { TrackballControls } from '../libs/TrackballControls.js'
 // Clases de mi proyecto
 
 
-import { EjePenduloSuperior, ParteAbajoPS, ParteRoja, PenduloSuperior, PenduloInferiorCaja, PenduloInferior } from './pendulos.js'
+import { EjePenduloSuperior, ParteAbajoPS, ParteRoja, PenduloSuperior, PenduloInferiorCaja, PenduloInferior, Pendulo } from './pendulos.js'
  
 /// La clase fachada del modelo
 /**
@@ -50,7 +50,7 @@ class MyScene extends THREE.Scene {
 
     this.objetosEscena = new THREE.Object3D();
 
-    var objeto = new PenduloInferior(this.gui, "Pendulo Inferior");
+    var objeto = new Pendulo(this.gui, "Pendulo");
     this.objetosEscena.add(objeto);
 
     this.add(this.objetosEscena);
@@ -64,9 +64,9 @@ class MyScene extends THREE.Scene {
     //   Los planos de recorte cercano y lejano
     this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
     // También se indica dónde se coloca
-    this.camera.position.set (10, 10, 10);
+    this.camera.position.set (5, -5, 25);
     // Y hacia dónde mira
-    var look = new THREE.Vector3 (0,0,0);
+    var look = new THREE.Vector3 (0,-5,0);
     this.camera.lookAt(look);
     this.add (this.camera);
     
