@@ -147,10 +147,9 @@ class PenduloInferiorCaja extends THREE.Object3D{
                 cajaGeo,
                 new THREE.MeshPhongMaterial({color: 0x0000FF})
             );
+
         caja.position.set(0,-0.5,0);
         this.add(caja);
-
-
     }
 
     createGUI(gui, titleGui){
@@ -158,11 +157,17 @@ class PenduloInferiorCaja extends THREE.Object3D{
             this.lambda = 10;
         }
         var folder = gui.addFolder (titleGui);
-        folder.add (this.guiControls, 'lambda', 10,20, 0.1).name ('Tamaño :\t').listen();
+
+        var that = this;
+
+        folder.add (this.guiControls, 'lambda', 10,20, 0.1).name ('Tamaño :\t').onChange(
+            function(){
+                that.scale.set(1,that.guiControls.lambda);
+            }
+        );
     }
 
-    update(){
-        this.scale.set(1,this.guiControls.lambda);
+    update(){  
     }
 
 }
@@ -191,14 +196,19 @@ class PenduloInferior extends THREE.Object3D{
         this.guiControls = new function(){
             this.delta = 0;
         }
+
+        var that = this;
+
         var folder = gui.addFolder(titleGui);
-        folder.add (this.guiControls, 'delta', -Math.PI/4, Math.PI/4, 0.1).name ('Giro :\t').listen();
+        folder.add (this.guiControls, 'delta', -Math.PI/4, Math.PI/4, 0.1).name ('Giro :\t').onChange(
+            function(){
+                that.rotation.set(0,0,that.guiControls.delta);
+            }
+        );
     }
 
     update(){
         this.caja.update();
-        this.rotation.set(0,0,this.guiControls.delta);
-
     }
 }
 

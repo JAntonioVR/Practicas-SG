@@ -4,6 +4,11 @@ import { MTLLoader } from '../libs/MTLLoader.js'
 import { OBJLoader } from '../libs/OBJLoader.js'
 
 
+//
+// ──────────────────────────────────────────────────────────────────── I ──────────
+//   :::::: C L A S E   G E N E R I C A : :  :   :    :     :        :          :
+// ──────────────────────────────────────────────────────────────────────────────
+//
 class geometriaFichero extends THREE.Mesh{
 
     constructor(mtlFile, objFile){
@@ -27,6 +32,12 @@ class geometriaFichero extends THREE.Mesh{
 
     update(){}
 }
+// ────────────────────────────────────────────────────────────────────────────────
+
+
+//
+// ─── EJEMPLOS ───────────────────────────────────────────────────────────────────
+//
 
 class Coche extends geometriaFichero{
     
@@ -57,7 +68,6 @@ class Arboles extends geometriaFichero{
     update(){}
 }
 
-    
 
 // ────────────────────────────────────────────────────────────────────────────────
 

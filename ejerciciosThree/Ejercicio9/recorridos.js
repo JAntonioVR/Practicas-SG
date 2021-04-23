@@ -1,6 +1,6 @@
 import * as THREE from '../libs/three.module.js'
 
-import {Coche} from '../Ejercicio6/geometriaFichero.js'
+import {Esfera} from '../Ejercicio2/geometriaBasica3D.js'
 import * as TWEEN from '../libs/tween.esm.js'
 
 
@@ -13,6 +13,31 @@ class Recorrido extends THREE.Mesh {
     constructor() {
         super();
 
+        
+
+        this.spline = this.create_spline();
+
+        var geometryLine          = new THREE.Geometry();
+            geometryLine.vertices = this.spline.getPoints(100);
+        var material              = new THREE.LineBasicMaterial({color: 0xff0000});
+        var visibleSpline         = new THREE.Line(geometryLine, material);
+        this.add(visibleSpline);
+
+
+        var geo = new THREE.ConeBufferGeometry(0.5,2,20);
+        geo.rotateX(Math.PI/2);
+
+
+        this.object = new THREE.Mesh(
+            geo,
+            new THREE.MeshNormalMaterial()
+        );
+        this.add(this.object);
+
+        this.animate();
+    }
+
+    create_spline(){
         var pts       = [],
             npoints   = 50,
             increment = (2*Math.PI)/npoints,
@@ -24,24 +49,15 @@ class Recorrido extends THREE.Mesh {
         }
         pts.push( this.spline(0));
 
-        this.spline = new THREE.CatmullRomCurve3(pts);
+        return new THREE.CatmullRomCurve3(pts);
 
-        var geometryLine          = new THREE.Geometry();
-            geometryLine.vertices = this.spline.getPoints(100);
-        var material              = new THREE.LineBasicMaterial({color: 0xff0000});
-        var visibleSpline         = new THREE.Line(geometryLine, material);
-        this.add(visibleSpline);
-
-        this.object = new Coche();
-        this.add(this.object);
-
-        this.animate();
     }
 
     //
     // ─── FUNCION SPLINE ─────────────────────────────────────────────────────────────
     //
     spline(t){
+        //t = Math.PI*2-t;
         var d = 20,
             x = d* Math.SQRT2*Math.cos(t)/(Math.sin(t)^2+1),
             y = 0.5,
@@ -72,8 +88,13 @@ class Recorrido extends THREE.Mesh {
                     posicion.add(tangente);
 
                     that.object.lookAt(posicion);
+
+                    console.log(tangente)
                 }
             )
+
+
+            //new THREE.CatmullRomCurve3(pts);
             .onComplete(
                 function(){
                     origen.lambda = 0;
@@ -98,11 +119,10 @@ class Recorrido extends THREE.Mesh {
             .onComplete(
                 function(){
                     origen.lambda = 0;
-                    animacion1.start();
                 }
             );
 
-        this.movimiento = animacion1.chain(animacion2);
+        this.movimiento = animacion1.chain(animacion2.chain(animacion1));
         this.movimiento.start();
     }
 
@@ -112,7 +132,6 @@ class Recorrido extends THREE.Mesh {
     update () {
         
         TWEEN.update();
-        this.object.rotation.y += Math.PI;
 
     }
 }

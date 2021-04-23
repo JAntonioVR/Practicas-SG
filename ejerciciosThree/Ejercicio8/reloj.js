@@ -1,4 +1,3 @@
-import { color } from '../libs/dat.gui.module.js';
 import * as THREE from '../libs/three.module.js'
 
 
