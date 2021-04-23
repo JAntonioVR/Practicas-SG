@@ -8,7 +8,7 @@ import { TrackballControls } from '../libs/TrackballControls.js'
 // Clases de mi proyecto
 
 
-import { Spline} from './recorridos.js'
+import { Recorrido } from './recorridos.js'
  
 /// La clase fachada del modelo
 /**
@@ -50,7 +50,7 @@ class MyScene extends THREE.Scene {
 
     this.objetosEscena = new THREE.Object3D();
 
-    var objeto = new Spline();
+    var objeto = new Recorrido ();
     this.objetosEscena.add(objeto);
 
     this.add(this.objetosEscena);
@@ -64,7 +64,7 @@ class MyScene extends THREE.Scene {
     //   Los planos de recorte cercano y lejano
     this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
     // También se indica dónde se coloca
-    this.camera.position.set (20, 20, 20);
+    this.camera.position.set (10, 10, 10);
     // Y hacia dónde mira
     var look = new THREE.Vector3 (0,0,0);
     this.camera.lookAt(look);

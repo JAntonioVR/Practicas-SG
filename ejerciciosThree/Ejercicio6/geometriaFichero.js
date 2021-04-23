@@ -39,7 +39,7 @@ class Coche extends geometriaFichero{
 }
     
 class Pato extends geometriaFichero{
-    constructor(){
+    constructor(){ 
         super('../models/pato/pato.mtl',
               '../models/pato/pato.obj');
         this.scale.set(0.01,0.01,0.01);
