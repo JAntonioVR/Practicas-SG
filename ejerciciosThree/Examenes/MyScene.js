@@ -10,6 +10,8 @@ import { TrackballControls } from '../libs/TrackballControls.js'
 
 import { BolaCilindro } from './BolaCilindro.js'
 import { BolaCilindroTrayectoria } from './BolaCilindroTrayectoria.js'
+import { Asiento, Silla } from './silla.js'
+import { Cosa } from './extrusion.js'
  
 /// La clase fachada del modelo
 /**
@@ -38,7 +40,7 @@ class MyScene extends THREE.Scene {
     this.createCamera ();
     
     // Un suelo 
-    this.createGround ();
+    //this.createGround ();
     
     // Y unos ejes. Imprescindibles para orientarnos sobre dónde están las cosas
     this.axis = new THREE.AxesHelper (5);
@@ -51,7 +53,7 @@ class MyScene extends THREE.Scene {
 
     this.objetosEscena = new THREE.Object3D();
 
-    var objeto = new BolaCilindroTrayectoria(this.gui, "Radio de la trayectoria");
+    var objeto = new Cosa();
     this.objetosEscena.add(objeto);
 
     this.add(this.objetosEscena);

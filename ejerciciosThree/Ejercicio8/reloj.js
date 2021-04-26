@@ -55,15 +55,20 @@ class Reloj extends THREE.Mesh {
             this.velocidad = 0;
         } 
 
+        var that = this;
+
         var folder = gui.addFolder (titleGui);
-        folder.add (this.guiControls, 'velocidad', -12, 12, 1).name ('Velocidad :\t').listen();
+        folder.add (this.guiControls, 'velocidad', -12, 12, 1).name ('Velocidad :\t').onChange(
+            function(){
+                that.velocidad = that.guiControls.velocidad;
+            }
+        );
     }
 
     //
     // ─── METODO UPDATE ──────────────────────────────────────────────────────────────
     //        
     update () {
-        this.velocidad = this.guiControls.velocidad;
 
         var tiempoActual = Date.now();
         var segundos = (tiempoActual-this.tiempoAnterior)/1000;

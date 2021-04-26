@@ -17,12 +17,6 @@ class Recorrido extends THREE.Mesh {
 
         this.spline = this.create_spline();
 
-        var geometryLine          = new THREE.Geometry();
-            geometryLine.vertices = this.spline.getPoints(100);
-        var material              = new THREE.LineBasicMaterial({color: 0xff0000});
-        var visibleSpline         = new THREE.Line(geometryLine, material);
-        this.add(visibleSpline);
-
 
         var geo = new THREE.ConeBufferGeometry(0.5,2,20);
         geo.rotateX(Math.PI/2);
@@ -49,7 +43,15 @@ class Recorrido extends THREE.Mesh {
         }
         pts.push( this.spline(0));
 
-        return new THREE.CatmullRomCurve3(pts);
+        var spline = new THREE.CatmullRomCurve3(pts);
+    
+        var geometryLine          = new THREE.Geometry();
+        geometryLine.vertices     = spline.getPoints(100);
+        var material              = new THREE.LineBasicMaterial({color: 0xff0000});
+        var visibleSpline         = new THREE.Line(geometryLine, material);
+        this.add(visibleSpline);
+        
+        return spline;
 
     }
 
