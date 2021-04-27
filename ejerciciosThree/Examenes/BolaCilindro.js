@@ -40,7 +40,7 @@ class BolaCilindro extends THREE.Mesh {
         folder.add (this.guiControls, 'radio', 1, 10, 1).name ('Radio :\t').onChange(
             function(){
                 that.cilindro.scale.set(that.guiControls.radio, 1, that.guiControls.radio);
-                that.esfera.esfera.position.set(that.guiControls.radio,0,0);
+                that.esfera.modificarPosicion(that.guiControls.radio);
             }
         );
     }
@@ -99,10 +99,14 @@ class Esfera extends THREE.Object3D{
         var esferaGeo = new THREE.SphereBufferGeometry(1,50,50),
             materialEsfera = new THREE.MeshNormalMaterial();
         this.esfera = new THREE.Mesh(esferaGeo, materialEsfera);
-
-        this.esfera.position.x = 1;
         this.add(this.esfera);
+        this.esfera.position.x = 1;
     }
+
+    modificarPosicion(a){
+        this.esfera.position.x = a;
+    }
+
     update(){}
 }
 

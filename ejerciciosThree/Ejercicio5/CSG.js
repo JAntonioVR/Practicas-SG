@@ -18,40 +18,24 @@ class Taza extends THREE.Mesh {
         //
         // ─── ASA ─────────────────────────────────────────────────────────
         //
-        for (let t = 0; t <= 2*Math.PI; t+=0.1) {
-            pts.push(new THREE.Vector2(Math.cos(t)/2+2, Math.sin(t)/2));
-        }
-        pts.push(new THREE.Vector2(2.5, 0));
-        var geoAsa = new THREE.LatheGeometry(pts, segments);
+        var geoAsa = new THREE.TorusGeometry (2.5, 0.5 , segments, segments);
         
         geoAsa.rotateZ(Math.PI/2);
-        geoAsa.rotateY(-Math.PI/2);
         geoAsa.translate(2.8,3.5,0);
-
-        // NOTE Se podia haber hecho con un toro y acabas antes
 
         //
         // ─── CILINDRO EXTERIOR ───────────────────────────────────────────
         //
-        pts = [
-            new THREE.Vector2(0,0),
-            new THREE.Vector2(3,0),
-            new THREE.Vector2(3,7),
-            new THREE.Vector2(0,7),
-        ];
-        var geoVasoExt = new THREE.LatheGeometry(pts, segments);
+
+        var geoVasoExt = new THREE.CylinderGeometry (3, 3, 7,segments);
+        geoVasoExt.translate(0,3.5,0);
 
         //
         // ─── CILINDRO INTERIOR ───────────────────────────────────────────
         //      
         var grosor = 0.2;
-        pts = [
-            new THREE.Vector2(0,grosor),
-            new THREE.Vector2(3-grosor,grosor),
-            new THREE.Vector2(3-grosor,7),
-            new THREE.Vector2(0,7),
-        ]
-        var geoVasoInt = new THREE.LatheGeometry(pts, segments);
+        var geoVasoInt = new THREE.CylinderGeometry (3-grosor, 3-grosor, 7,segments);
+        geoVasoInt.translate(0,3.7,0);
 
 
         // Creamos los BSP

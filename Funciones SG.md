@@ -62,6 +62,14 @@ var geo = new THREE.LatheBufferGeometry(points, segments, phiStart, phiLength);
 // Por defecto, segments=12, phiStart=0, phiLength=2*Math.Pi
 
 // CUIDADO!! phiLenth no siempre es el ángulo final, si lo es cuando phiStart==0
+
+var miMaterial = new THREE.MeshNormalMaterial();
+// NOTE Si dejamos el sólido abierto por arriba, no se va a ver
+// nada por dentro del objeto, la forma de solucionarlo es o bien
+// crear más vértices en el perfil para que haya otro "exterior"
+// o bien asignando THREE.DoubleSide al atributo .side del material
+// las otras opciones son THREE.Front o THREE.Back
+miMaterial.side = THREE.DoubleSide;
 ```
 
 ### Primitivas Básicas
