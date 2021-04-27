@@ -8,7 +8,7 @@ import { TrackballControls } from '../libs/TrackballControls.js'
 // Clases de mi proyecto
 
 // TODO Importar la clase
-import { Reloj} from './reloj.js'
+import { Comecocos } from './examen.js'
  
 /// La clase fachada del modelo
 /**
@@ -50,7 +50,7 @@ class MyScene extends THREE.Scene {
 
     this.objetosEscena = new THREE.Object3D();
 
-    var objeto = new Reloj(this.gui, "Controles del Reloj");
+    var objeto = new Comecocos();
     this.objetosEscena.add(objeto);
 
     this.add(this.objetosEscena);
