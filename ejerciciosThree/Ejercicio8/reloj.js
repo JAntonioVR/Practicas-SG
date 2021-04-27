@@ -41,7 +41,7 @@ class Reloj extends THREE.Mesh {
         this.add(this.aguja);
 
         
-        this.tiempoAnterior = Date.now();
+        this.clock = new THREE.Clock();
 
 
     }
@@ -70,12 +70,9 @@ class Reloj extends THREE.Mesh {
     //        
     update () {
 
-        var tiempoActual = Date.now();
-        var segundos = (tiempoActual-this.tiempoAnterior)/1000;
+        var segundos = this.clock.getDelta();
 
         this.aguja.rotation.y += (2.0*Math.PI)/12*this.velocidad*segundos;
-
-        this.tiempoAnterior = tiempoActual;
 
     }
 }
